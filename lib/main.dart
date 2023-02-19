@@ -165,7 +165,7 @@ class FirstPage extends StatelessWidget {
                       onPressed: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
-                          return const Tides(title: 'Weather');
+                          return const Weather(title: 'Weather');
                         }));
                       },
                       child: const Text('Weather'),
@@ -185,7 +185,7 @@ class FirstPage extends StatelessWidget {
                       onPressed: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
-                          return const Tides(title: 'Lifegaurd Info');
+                          return const Lifegaurds(title: 'Lifegaurd Info');
                         }));
                       },
                       child: const Text('Lifegaurd Info'),
@@ -205,7 +205,7 @@ class FirstPage extends StatelessWidget {
                       onPressed: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
-                          return const Tides(title: 'Activities');
+                          return const Activities(title: 'Activities');
                         }));
                       },
                       child: const Text('Activities'),
@@ -213,7 +213,7 @@ class FirstPage extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  child: TextButton(
+                  child: ElevatedButton(
           onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
               return const SearchCol(title: 'Skerries');
@@ -242,7 +242,7 @@ class Tides extends StatelessWidget {
         centerTitle: true,
       ),
       body: Center(
-        child: TextButton(
+        child: ElevatedButton(
           onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
               return const FirstPage(title: 'Skerries');
@@ -257,7 +257,8 @@ class Tides extends StatelessWidget {
 
 //weather page
 class Weather extends StatelessWidget {
-  const Weather({super.key});
+  const Weather({Key? key, required this.title}) : super(key: key);
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -267,13 +268,13 @@ class Weather extends StatelessWidget {
         centerTitle: true,
       ),
       body: Center(
-        child: TextButton(
+        child: ElevatedButton(
           onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
               return const FirstPage(title: 'Skerries');
             }));
           },
-          child: const Text('Weather'),
+          child: const Text('Skerries'),
         ),
       ),
     );
@@ -282,7 +283,8 @@ class Weather extends StatelessWidget {
 
 //lifegaurd info
 class Lifegaurds extends StatelessWidget {
-  const Lifegaurds({super.key});
+  const Lifegaurds({Key? key, required this.title}) : super(key: key);
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -293,16 +295,20 @@ class Lifegaurds extends StatelessWidget {
       ),
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Container(
-              child: TextButton(
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return const FirstPage(title: 'Skerries');
-                  }));
-                },
-                child: const Text('Lifegaurding Info'),
-              ),
+            const Text( 'Lifegaurd on Duty: \n ' ),
+            const Text('July:   11am - 7pm \n'),
+            const Text ('June:   Saturday and Sunday 11am - 7pm \n'),
+            const Text('August:   11am - 7pm \n,'),
+
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return const FirstPage(title: 'Skerries');
+                }));
+              },
+              child: const Text('Skerries'),
             ),
           ],
         ),
@@ -313,23 +319,24 @@ class Lifegaurds extends StatelessWidget {
 
 //activities
 class Activities extends StatelessWidget {
-  const Activities({super.key});
+  const Activities({Key? key, required this.title}) : super(key: key);
+  final String title;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Weather'),
+        title: const Text('Activities'),
         centerTitle: true,
       ),
       body: Center(
-        child: TextButton(
+        child: ElevatedButton(
           onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
               return const FirstPage(title: 'Skerries');
             }));
           },
-          child: const Text('Weather'),
+          child: const Text('Skerries'),
         ),
       ),
     );
@@ -358,7 +365,7 @@ class SecondScreen extends StatelessWidget {
             const Text("\n \n Predicted Tides: \n -> First High Tide at 09:50am.  \n -> First Low Tide at 03:05am. \n -> Second High Tide at 10:29pm. \n -> Second Low Tide at 03:38pm."),
 
             Container(
-              child: TextButton(
+              child: ElevatedButton(
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
               return const FirstPage(title: 'Skerries');
