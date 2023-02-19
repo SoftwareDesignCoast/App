@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+//import 'package:tides/secondscreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,7 +11,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Home(),
     );
   }
@@ -23,7 +25,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("WaveWatcher"),
+        title: const Text("WaveWatcher"),
         centerTitle: true,
         backgroundColor: Colors.cyan[400],
       ),
@@ -63,7 +65,7 @@ class SearchCol extends StatelessWidget {
           Container(
               child: ElevatedButton(
             onPressed: () => {print("Button 1 was pressed")},
-            child: const Text("Button 1"),
+            child: const Text("Location 1"),
             ),
           ),
           ElevatedButton(
@@ -72,23 +74,23 @@ class SearchCol extends StatelessWidget {
                 return const FirstPage(title: 'Tides');
               }));
             },
-            child: const Text("Button 2"),
+            child: const Text("Skerries"),
           ),
           ElevatedButton(
             onPressed: () => {print("Button 3 was pressed")},
-            child: const Text("Button 3"),
+            child: const Text("Location 3"),
           ),
           ElevatedButton(
             onPressed: () => {print("Button 4 was pressed")},
-            child: const Text("Button 4"),
+            child: const Text("Location 4"),
           ),
           ElevatedButton(
             onPressed: () => {print("Button 5 was pressed")},
-            child: const Text("Button 5"),
+            child: const Text("Location 5"),
           ),
           ElevatedButton(
             onPressed: () => {print("Button 5 was pressed")},
-            child: const Text("Button 6"),
+            child: const Text("Location 6"),
           ),
         ],
       ),
@@ -106,7 +108,7 @@ class FirstPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.blueGrey.shade100,
       appBar: AppBar(
-        backgroundColor: Colors.teal.shade300,
+        backgroundColor: const Color.fromARGB(255, 103, 150, 189),
         title: Text(title),
         centerTitle: true,
       ),
@@ -143,7 +145,7 @@ class FirstPage extends StatelessWidget {
                       onPressed: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
-                          return const Tides(title: 'Tides');
+                          return const SecondScreen(title: 'Tides');
                         }));
                       },
                       child: const Text('Tides'),
@@ -329,6 +331,45 @@ class Activities extends StatelessWidget {
           },
           child: const Text('Weather'),
         ),
+      ),
+    );
+  }
+}
+
+
+ 
+class SecondScreen extends StatelessWidget {
+  const SecondScreen({Key? key, required this.title}) : super(key: key);
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text("Tide Forecast: Skerries"),
+        ),    
+      body: Center(
+        child: Column(
+          //mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            //Padding(padding: EdgeInsets.only(top:30)),
+            Image.asset('assets/tides_skerries.png'),
+            const Text("\n \n Predicted Tides: \n -> First High Tide at 09:50am.  \n -> First Low Tide at 03:05am. \n -> Second High Tide at 10:29pm. \n -> Second Low Tide at 03:38pm."),
+
+            Container(
+              child: TextButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return const FirstPage(title: 'Skerries');
+            }));
+          },
+          child: const Text('Go Back'),
+            ),
+            ),
+          ],
+        ),
+      ),
       ),
     );
   }
